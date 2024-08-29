@@ -11,6 +11,10 @@ Rails.application.routes.draw do
     resources :tasks
   end
 
+  Rails.application.routes.draw do
+    resources :events
+  end
+
   # Defines the root path route ("/")
   # root "posts#index"
 end
