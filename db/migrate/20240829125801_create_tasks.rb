@@ -5,7 +5,7 @@ class CreateTasks < ActiveRecord::Migration[7.1]
       t.text :notes
       t.time :time
       t.date :date
-      t.boolean :completed
+      t.boolean :completed, default: :false
 
       t.timestamps
     end
