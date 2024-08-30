@@ -11,9 +11,12 @@ class EventsController < ApplicationController
 
   def create
     @event = Event.new(event_params)
-    @event.save
-
-    redirect_to event_path(@event)
+    @event.user = current_user
+    if @event.save
+      redirect_to events_path, notice: 'event was successfully created!'
+    else
+      render :new, status: :unprocessable_entity
+    end
   end
 
   def update
@@ -35,6 +38,6 @@ class EventsController < ApplicationController
   end
 
   def set_event
-    @event = event.find(params[:id])
+    @event = Event.find(params[:id])
   end
 end

@@ -11,9 +11,13 @@ class TasksController < ApplicationController
 
   def create
     @task = Task.new(task_params)
-    @task = Task.save
-
-    redirect_to task_path(@task)
+    @task.user = current_user
+    if @task.save
+      redirect_to tasks_path, notice: 'task was successfully created!'
+    else
+      render :new, status: :unprocessable_entity
+    end
+    
   end
 
   def update
